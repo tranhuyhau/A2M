@@ -4,17 +4,15 @@ public class NhiSangThap{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         String nhiPhan;
-        boolean kiemTra = true;
+        boolean kiemTra;
         do{
             System.out.print("Nhap chuoi nhi phan: ");
             nhiPhan = sc.nextLine();
             kiemTra = true;
             for(int i = 0; i < nhiPhan.length(); i++){
-                if(nhiPhan.charAt(i)!='0'){
-                    if(nhiPhan.charAt(i) != '1'){
-                        kiemTra = false;
-                        break;
-                    }
+                if(nhiPhan.charAt(i)!='0' && nhiPhan.charAt(i) != '1'){
+                    kiemTra = false;
+                    break;
                 }
             } 
         }while(!kiemTra);

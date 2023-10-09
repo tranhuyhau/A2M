@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class DoiTien{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        int USD = 23500;
+        final int USD = 23500;
         while(true){
             System.out.println("1. VND -> USD");
             System.out.println("2. USD -> VND");

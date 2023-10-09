@@ -10,6 +10,6 @@ public class DaoChuoi{
         for(int i = chuoi.length() - 1; i >= 0; i--){
             dao += chuoi.charAt(i);
         }
-        System.out.print("So nhi phan la: " + dao);
+        System.out.print("Chuoi sau khi dao la: " + dao);
     }
 }
