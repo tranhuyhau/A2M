@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class InLichThang{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap so thang: ");
+        System.out.print("Nhap so thang(1-12): ");
         int month = sc.nextInt();
-        System.out.print("Nhap so nam: ");
+        System.out.print("Nhap so nam(>=1800): ");
         int year = sc.nextInt();
         InLichThang(month, year);
     }
@@ -13,42 +13,48 @@ public class InLichThang{
     public static void InLichThang(int month, int year){
         int day = 1;
         int thuTrongTuan = xacDinhThu(month, year);
-        int soNgayTrongThang = soNgayTrongThang(month, year);
-        System.out.println("Thang " + month + " Nam " + year);
-        System.out.println("----------------------------");
-        System.out.println("CN\tT1\tT3\tT4\tT5\tT6\tT7");
-        for(int i=0; i<7; i++){
-            if(i<thuTrongTuan)
-                System.out.print("\t");
-            else
-                System.out.print(day++ + "\t");
-        }
-        System.out.println("");
-        while(day<=soNgayTrongThang){
+        if(thuTrongTuan == -1)
+            System.out.println("Sai thong tin!");
+        else{
+            int soNgayTrongThang = soNgayTrongThang(month, year);
+            System.out.println("Thang " + month + " Nam " + year);
+            System.out.println("----------------------------");
+            System.out.println("CN\tT1\tT3\tT4\tT5\tT6\tT7");
             for(int i=0; i<7; i++){
-                if(day<=soNgayTrongThang)
+                if(i<thuTrongTuan)
+                    System.out.print("\t");
+                else
                     System.out.print(day++ + "\t");
             }
             System.out.println("");
+            while(day<=soNgayTrongThang){
+                for(int i=0; i<7; i++){
+                    if(day<=soNgayTrongThang)
+                        System.out.print(day++ + "\t");
+                }
+                System.out.println("");
+            }
         }
     }
 
     public static int xacDinhThu(int month, int year){
         int doomsday_end_2_1800 = 5;
-        if(year == 1800)
-            return doomsday_end_2_1800;
-        for(int i = 1801; i<=year; i++){
-            if(doomsday_end_2_1800 == 6){
-                doomsday_end_2_1800 = -1;
-            }
-            if(isLeapYear(i))
-                if(doomsday_end_2_1800 == 5)
-                    doomsday_end_2_1800 = 0;
+        if(year > 1800){
+            for(int i = 1801; i<=year; i++){
+                if(doomsday_end_2_1800 == 6){
+                    doomsday_end_2_1800 = -1;
+                }
+                if(isLeapYear(i))
+                    if(doomsday_end_2_1800 == 5)
+                        doomsday_end_2_1800 = 0;
+                    else
+                        doomsday_end_2_1800 += 2;
                 else
-                    doomsday_end_2_1800 += 2;
-            else
-                doomsday_end_2_1800 +=1;
+                    doomsday_end_2_1800 +=1;
+            }
         }
+        if(year < 1800)
+            return -1;
         int start_month;
         switch(month){
             case 1:
